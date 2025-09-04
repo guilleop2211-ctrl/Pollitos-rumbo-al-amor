@@ -92,7 +92,7 @@ body {
 .level-3 { background: linear-gradient(to top, #283e51, #485563); }   /* montaña de noche */
 .level-4 { background: linear-gradient(to top, #f3904f, #3b4371); }   /* atardecer */
 
-/* Mensajes del final */
+/* Mensajes */
 .message {
   position: fixed;
   left: 50%;
@@ -105,4 +105,38 @@ body {
   border: 2px solid #f5c2ff;
   font-weight: 700;
   z-index: 50;
+}
+
+/* Sección de decisión */
+#decision {
+  margin: 20px auto;
+  text-align: center;
+  padding: 12px;
+}
+#decision p {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+#decision button {
+  font-size: 18px;
+  padding: 10px 18px;
+  margin: 6px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#yesBtn {
+  background: #ff6ba1;
+  color: #fff;
+  box-shadow: 0 3px #b84773;
+}
+#noBtn {
+  background: #aaa;
+  color: #fff;
+  box-shadow: 0 3px #666;
+}
+#yesBtn:active, #noBtn:active {
+  transform: translateY(3px);
 }
