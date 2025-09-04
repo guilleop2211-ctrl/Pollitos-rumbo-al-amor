@@ -2,28 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-  <title>Pollitos en el Amor — Prototipo</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- Phaser 3 CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pollitos rumbo al amor</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <div id="game"></div>
-
-  <!-- UI overlay for final question -->
-  <div id="overlay" class="hidden">
-    <div class="modal">
-      <h2>Day, ¿quieres volver a ser mi novia?</h2>
-      <div class="buttons">
-        <button id="btnSi">Sí 💖</button>
-        <button id="btnNo">No 😔</button>
-      </div>
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <div id="controls">
+      <button id="left">⬅️</button>
+      <button id="jump">⬆️</button>
+      <button id="right">➡️</button>
     </div>
   </div>
 
-  <!-- Overlay message -->
-  <div id="mensaje" class="hidden"></div>
+  <!-- Música de fondo -->
+  <audio id="bg-music" loop autoplay>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f5386cf496.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="main.js"></script>
 </body>
