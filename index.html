@@ -2,11 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
   <title>Pollitos rumbo al amor</title>
   <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="level-1">
+
+  <!-- Hero con pixelart (dos pollitos + corazón) -->
+  <header class="hero">
+    <canvas id="heroArt" width="96" height="64"></canvas>
+    <h1>Day &amp; Guille</h1>
+    <p>Una aventura de amor en 4 niveles</p>
+  </header>
+
+  <!-- Juego -->
   <div id="game-container">
     <canvas id="gameCanvas"></canvas>
     <div id="controls">
@@ -16,7 +25,7 @@
     </div>
   </div>
 
-  <!-- Música de fondo -->
+  <!-- Música de fondo (tranquila/romántica) -->
   <audio id="bg-music" loop autoplay>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f5386cf496.mp3" type="audio/mpeg">
   </audio>
