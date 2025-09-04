@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-  <title>Pollitos rumbo al amor</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8">
+  <title>Day & Guille - Juego del Amor</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="level-1">
-
-  <!-- Hero con pixelart (dos pollitos + corazón) -->
-  <header class="hero">
+  <div class="hero">
+    <h1>🐥 Day & Guille 💕</h1>
     <canvas id="heroArt" width="96" height="64"></canvas>
-    <h1>Day &amp; Guille</h1>
-    <p>Una aventura de amor en 4 niveles</p>
-  </header>
-
-  <!-- Juego -->
-  <div id="game-container">
-    <canvas id="gameCanvas"></canvas>
-    <div id="controls">
-      <button id="left">⬅️</button>
-      <button id="jump">⬆️</button>
-      <button id="right">➡️</button>
-    </div>
+    <p>Un juego especial para ti, Day ✨</p>
   </div>
 
-  <!-- Decisión final -->
-  <div id="decision">
-    <p>¿Quieres volver a ser mi novia? 💕</p>
-    <button id="yesBtn">Sí 💖</button>
-    <button id="noBtn">No 💔</button>
+  <canvas id="gameCanvas"></canvas>
+
+  <div class="controls">
+    <button id="left">⬅️</button>
+    <button id="jump">⏫</button>
+    <button id="right">➡️</button>
   </div>
 
-  <!-- Música de fondo -->
-  <audio id="bg-music" loop autoplay>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f5386cf496.mp3" type="audio/mpeg">
-  </audio>
+  <div class="decision">
+    <p>¿Quieres volver a ser mi novia? 💖</p>
+    <button id="yesBtn">Sí 💕</button>
+    <button id="noBtn">No 😢</button>
+  </div>
 
   <script src="main.js"></script>
 </body>
