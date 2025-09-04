@@ -14,10 +14,6 @@
     ctx.fillRect(Math.random()*96, Math.random()*26, 1, 1);
   }
 
-  // Suelo
-  for (let x=0;x<96;x++) px(x, 56, '#5b3f8f');
-  for (let x=0;x<96;x+=2) px(x, 57, '#6a4aa3');
-
   // Corazón
   const heart = [
     '..11..11..',
@@ -59,4 +55,79 @@
     // Ojo
     px(baseX+5, baseY+3, B);
     // Moñito
-    if(bow){ px(baseX+1,baseY+1,P);px(baseX+2,baseY+1,P);px(bas
+    if(bow){ px(baseX+1,baseY+1,P);px(baseX+2,baseY+1,P);px(baseX+1,baseY+2,P);px(baseX+2,baseY+2,P);px(baseX+3,baseY+2,P); }
+    // Sombrero
+    if(hat){ px(baseX+4,baseY,H);px(baseX+5,baseY,H);px(baseX+6,baseY,H);px(baseX+5,baseY-1,H); }
+  }
+  chick(22,34,false,true,false); // Day con moñito
+  chick(62,34,true,false,true);  // Guille con sombrero
+})();
+
+/* =========================
+   Juego básico
+   ========================= */
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = 400;
+canvas.height = 400;
+
+const player = { x:50, y:300, width:30, height:30, velocityY:0, jumping:false };
+let gravity=0.8, jumpPower=-12;
+let currentLevel=1, totalLevels=4;
+
+function changeLevel(level){ document.body.className=""; document.body.classList.add(`level-${level}`); }
+
+// === Pollito pixelart en el juego ===
+function drawPlayer(){
+  const px = (x,y,color)=>{ ctx.fillStyle=color; ctx.fillRect(player.x + x, player.y + y, 4, 4); };
+  const Y="#F7E06E", O="#FF922E", B="#000", F="#8b5a2b";
+
+  // cuerpo (3x3 amarillo)
+  for(let i=0;i<3;i++) for(let j=0;j<3;j++) px(i*4,j*4,Y);
+  px(4,0,Y); px(4,4,Y);
+
+  // ojo
+  px(8,4,B);
+
+  // pico
+  px(12,8,O); px(12,12,O);
+
+  // patitas
+  px(4,16,F); px(8,16,F);
+}
+
+function drawGround(){ ctx.fillStyle="transparent"; ctx.fillRect(0, canvas.height-40, canvas.width, 40); }
+function updatePlayer(){
+  player.y+=player.velocityY;
+  if(player.y+player.height/2<canvas.height-40){ player.velocityY+=gravity; player.jumping=true; }
+  else{ player.y=canvas.height-40-player.height/2; player.velocityY=0; player.jumping=false; }
+}
+function gameLoop(){ ctx.clearRect(0,0,canvas.width,canvas.height); drawGround(); drawPlayer(); updatePlayer(); requestAnimationFrame(gameLoop); }
+gameLoop();
+
+document.getElementById("left").addEventListener("click",()=>{ player.x-=20; if(player.x<0) player.x=0; });
+document.getElementById("right").addEventListener("click",()=>{ player.x+=20; if(player.x>canvas.width-player.width) nextLevel(); });
+document.getElementById("jump").addEventListener("click",()=>{ if(!player.jumping){ player.velocityY=jumpPower; player.jumping=true; }});
+
+function nextLevel(){
+  if(currentLevel<totalLevels){ currentLevel++; changeLevel(currentLevel); player.x=50; toast(`Nivel ${currentLevel} ✓`); }
+  else{ toast("¡Llegaste al final del camino de amor 💕!"); }
+}
+function toast(text){ const m=document.createElement("div"); m.className="message"; m.innerText=text; document.body.appendChild(m); setTimeout(()=>m.remove(),1800); }
+function showMessage(text){ const m=document.createElement("div"); m.className="message"; m.innerText=text; document.body.appendChild(m); }
+
+/* =========================
+   Botones de decisión
+   ========================= */
+document.getElementById("yesBtn").addEventListener("click",()=>{
+  showMessage("💖 ¡Sí! Guille te entrega un ramo de tulipanes 🌷");
+  const tulipColors=["#ff66cc","#ff99cc","#ff3366"];
+  tulipColors.forEach((c,i)=>{ drawTulip(140+i*40, canvas.height-60, c); });
+});
+document.getElementById("noBtn").addEventListener("click",()=>{ showMessage("💔 Mañana volveré a intentarlo"); });
+
+function drawTulip(x,y,color){
+  ctx.fillStyle=color; ctx.fillRect(x,y,10,14); // flor
+  ctx.fillStyle="#228B22"; ctx.fillRect(x+4,y+14,2,12); // tallo
+  ctx.fillRect(x-4,y+18,6,2); ctx.fillRect(x+6,y+18,6,2); // hojas
+}
