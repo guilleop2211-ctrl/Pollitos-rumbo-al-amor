@@ -1,10 +1,40 @@
 /* Estilo general */
+* { box-sizing: border-box; }
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: linear-gradient(to top, #ff9a9e, #fad0c4);
-  overflow: hidden;
+  overflow-x: hidden;
+  color: #1d1b2e;
+}
+
+/* HERO (pixelart arriba) */
+.hero {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 18px 12px 8px;
+  text-align: center;
+}
+.hero h1 {
+  margin: 6px 0 0;
+  font-size: 22px;
+}
+.hero p {
+  margin: 2px 0 0;
+  opacity: 0.8;
+  font-size: 14px;
+}
+#heroArt {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: min(420px, 82vw);
+  height: calc(min(420px, 82vw) * (64/96));
+  border: 3px solid rgba(255,255,255,0.7);
+  border-radius: 14px;
+  background: #231b3f;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
 /* Contenedor del juego */
@@ -12,18 +42,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start;
+  min-height: 58vh;
+  padding: 8px 12px 18px;
 }
 
-/* Canvas */
+/* Canvas del juego */
 #gameCanvas {
   background: #87CEEB; /* celeste inicial */
   border: 3px solid #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   width: 95%;
-  max-width: 480px;
-  height: 70vh;
+  max-width: 520px;
+  height: 58vh;
+  max-height: 520px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 }
 
 /* Controles */
@@ -31,51 +64,45 @@ body {
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 14px;
+  width: 95%;
+  max-width: 520px;
 }
-
 #controls button {
   font-size: 24px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   background: #ffe066;
+  color: #2a235a;
+  font-weight: 700;
   box-shadow: 0 4px #c9a600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.15s;
+  width: 33%;
 }
-
 #controls button:active {
   transform: translateY(3px);
   box-shadow: 0 2px #c9a600;
 }
 
 /* Fondos de niveles */
-.level-1 {
-  background: linear-gradient(to top, #a8edea, #fed6e3); /* campo */
-}
+.level-1 { background: linear-gradient(to top, #a8edea, #fed6e3); }   /* campo */
+.level-2 { background: linear-gradient(to top, #cfd9df, #e2ebf0); }   /* río */
+.level-3 { background: linear-gradient(to top, #283e51, #485563); }   /* montaña de noche */
+.level-4 { background: linear-gradient(to top, #f3904f, #3b4371); }   /* atardecer */
 
-.level-2 {
-  background: linear-gradient(to top, #cfd9df, #e2ebf0); /* río */
-}
-
-.level-3 {
-  background: linear-gradient(to top, #283e51, #485563); /* montaña de noche */
-}
-
-.level-4 {
-  background: linear-gradient(to top, #f3904f, #3b4371); /* atardecer */
-}
-
-/* Mensajes */
+/* Mensajes del final */
 .message {
-  position: absolute;
-  top: 20%;
+  position: fixed;
   left: 50%;
+  top: 16px;
   transform: translateX(-50%);
-  background: rgba(255,255,255,0.9);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 20px;
+  background: rgba(42,35,90,0.92);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #f5c2ff;
+  font-weight: 700;
+  z-index: 50;
 }
